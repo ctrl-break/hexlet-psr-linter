@@ -25,12 +25,17 @@ class Linter
                 if (isset($value->name) && get_class($value) === 'PhpParser\Node\Stmt\Function_') {
                     if (!preg_match('/^[a-z]*[A-Z0-9]*[a-zA-Z0-9]*/', $value->name[0])) {
                         $this->errors[] = [false,
-                                                'Имя функции должно начинатся с буквы в нижнем регистре и быть написано в стиле camelCase',
+                                                'Имя функции должно начинатся с
+																								буквы в нижнем регистре и быть
+																								написано в стиле camelCase',
                                                 $value->getAttributes(), ];
                         var_dump($value->name);
                     }
                     if (strpos('_', $value->name) !== false) {
-                        $this->errors[] = [false, 'В имени функции не должно быть знаков подчеркивания', $value->getAttributes()];
+                        $this->errors[] = [false,
+                                                'В имени функции не должно быть
+																								знаков подчеркивания',
+                                                $value->getAttributes(), ];
                     }
                     if (empty($this->errors)) {
                         return true;
