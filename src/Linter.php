@@ -2,9 +2,12 @@
 
 namespace HexletPsrLinter;
 
+//use PhpParser\Error;
+use PhpParser\ParserFactory;
+
 class Linter
 {
-    public $code;
+    private $code;
 
     public function __construct($code)
     {
@@ -13,10 +16,14 @@ class Linter
 
     public function linter()
     {
-        if ($this->code) {
-            return true;
-        }
+				$parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
 
-        return false;
+				try {
+				    $stmts = $parser->parse($this->code);
+						var_dump($stmts);
+						//return $stmts;
+				} catch (Error $e) {
+				    echo 'Parse Error: ', $e->getMessage();
+				}
     }
 }
