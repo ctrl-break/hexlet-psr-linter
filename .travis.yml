@@ -6,10 +6,6 @@ install:
   - composer self-update
   - make install
 
-addons:
-  code_climate:
-    repo_token: 24914fd318571047df350067c5604b626b39e6519e07cbefedde2b2e54f100bb
-
 script: make lint test
 
 after_script:
