@@ -4,8 +4,16 @@ namespace HexletPsrLinter;
 
 class Linter
 {
-	public function linter()
-	{
-	    return true;
-	}
+		public $code;
+
+		public function _construct($code)
+		{
+			$this->code = $code;
+		}
+
+    public function linter()
+    {
+        if ($this->code) return true;
+				return false;
+    }
 }
