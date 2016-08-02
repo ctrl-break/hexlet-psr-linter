@@ -19,25 +19,29 @@ class Linter
     {
         $err = [];
         if (!preg_match('/[a-z]/', $value->name[0])) {
-            $err[] = ['Имя функции должно начинаться с буквы в нижнем регистре',
+            $err[] = ['First letter of function name must be in lowercase',
                       $value->name,
                       $value->getAttributes(),
+                      'warning',
                      ];
         }
 
         if (strpos($value->name, '_') !== false) {
-            $err[] = ['В имени функции не должно быть знаков подчеркивания',
+            $err[] = ['Function name should not include the underscore',
                       $value->name,
                       $value->getAttributes(),
+                      'warning',
                      ];
         }
 
         if (!\PHP_CodeSniffer::isCamelCaps($value->name)) {
-            $err[] = ['Имя функции должно быть написано в стиле camelCase',
+            $err[] = ['Function name should be written in camelCase style',
                       $value->name,
                       $value->getAttributes(),
+                      'warning',
                      ];
         }
+  //      var_dump($value);
 
         return $err;
     }
