@@ -24,15 +24,16 @@ class Linter
                       $value->getAttributes(),
                      ];
         }
-        if (!preg_match('/[a-zA-Z0-9]+/', $value->name)) {
-            $err[] = ['Имя функции должно состоять из букв английского алфавита и цифр
-                      и быть написано в стиле camelCase',
+
+        if (strpos($value->name, '_') !== false) {
+            $err[] = ['В имени функции не должно быть знаков подчеркивания',
                       $value->name,
                       $value->getAttributes(),
                      ];
         }
-        if (strpos($value->name, '_') !== false) {
-            $err[] = ['В имени функции не должно быть знаков подчеркивания',
+
+        if (!\PHP_CodeSniffer::isCamelCaps($value->name)) {
+            $err[] = ['Имя функции должно быть написано в стиле camelCase',
                       $value->name,
                       $value->getAttributes(),
                      ];
@@ -47,13 +48,14 @@ class Linter
 
         try {
             $stmts = $parser->parse($this->code);
-            foreach ($stmts as $value) {
-                if (isset($value->name) && get_class($value) === 'PhpParser\Node\Stmt\Function_') {
-                    $this->errors = array_merge($this->errors, $this->checkFuncName($value));
-                }
-            }
         } catch (Error $e) {
             echo 'Parse Error: ', $e->getMessage();
+        }
+
+        foreach ($stmts as $value) {
+            if (isset($value->name) && get_class($value) === 'PhpParser\Node\Stmt\Function_') {
+                $this->errors = array_merge($this->errors, $this->checkFuncName($value));
+            }
         }
 
         return $this->errors;
