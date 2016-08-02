@@ -33,13 +33,14 @@ class Linter
                       $value->getAttributes(),
                      ];
         }
-        if (strpos($value->name, '_' ) !== false) {
+        if (strpos($value->name, '_') !== false) {
             $err[] = ['В имени функции не должно быть/n
                       знаков подчеркивания',
                       $value->name,
                       $value->getAttributes(),
                      ];
         }
+
         return $err;
     }
 
@@ -51,7 +52,7 @@ class Linter
             $stmts = $parser->parse($this->code);
             foreach ($stmts as $value) {
                 if (isset($value->name) && get_class($value) === 'PhpParser\Node\Stmt\Function_') {
-                    array_push($this->errors, $this->checkFuncName($value));
+                    $this->errors = array_merge($this->errors, $this->checkFuncName($value));
                 }
             }
         } catch (Error $e) {
