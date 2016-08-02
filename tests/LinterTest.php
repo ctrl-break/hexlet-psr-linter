@@ -4,23 +4,30 @@ namespace HexletPsrLinter;
 
 class LinterTest extends \PHPUnit_Framework_TestCase
 {
-    public function testLinter()
+    public function testFuncName()
     {
         $test1 = new Linter('
             <?php
                 function rightFunc(){
-                    echo "ok";
                 }
             ?>');
-        $this->assertTrue($test1->linter());
+        $result = $test1->linter();
+        $this->assertEquals(0, count($result[0]));
 
         $test2 = new Linter('
             <?php
-                function wrong_func(){
-                    echo "-";
+                function WrongFunc(){
                 }
             ?>');
         $result = $test2->linter();
-        $this->assertEquals(false, $result[0]);
+        $this->assertEquals(1, count($result[0]));
+
+        $test3 = new Linter('
+            <?php
+                function Wrong_func2(){
+                }
+            ?>');
+        $result = $test3->linter();
+        $this->assertEquals(2, count($result[0]));
     }
 }
