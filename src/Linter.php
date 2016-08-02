@@ -2,7 +2,7 @@
 
 namespace HexletPsrLinter;
 
-//use PhpParser\Error;
+use PhpParser\Error;
 use PhpParser\ParserFactory;
 
 class Linter
@@ -19,23 +19,20 @@ class Linter
     {
         $err = [];
         if (!preg_match('/[a-z]/', $value->name[0])) {
-            $err[] = ['Имя функции должно начинаться /n
-                      с	буквы в нижнем регистре',
+            $err[] = ['Имя функции должно начинаться с буквы в нижнем регистре',
                       $value->name,
                       $value->getAttributes(),
                      ];
         }
         if (!preg_match('/[a-zA-Z0-9]+/', $value->name)) {
-            $err[] = ['Имя функции должно состоять/n
-                      из букв английского алфавита и цифр /n
+            $err[] = ['Имя функции должно состоять из букв английского алфавита и цифр
                       и быть написано в стиле camelCase',
                       $value->name,
                       $value->getAttributes(),
                      ];
         }
         if (strpos($value->name, '_') !== false) {
-            $err[] = ['В имени функции не должно быть/n
-                      знаков подчеркивания',
+            $err[] = ['В имени функции не должно быть знаков подчеркивания',
                       $value->name,
                       $value->getAttributes(),
                      ];

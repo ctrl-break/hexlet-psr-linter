@@ -3,4 +3,28 @@
 <?php
 require_once __DIR__.'/../vendor/autoload.php';
 
-echo 'hexlet psr linter';
+use HexletPsrLinter\Linter;
+
+function output($errors){
+echo "------------------------------------------------------------------------".PHP_EOL;
+foreach ($errors as $err) {
+  echo "line - ".$err[2]['startLine']." / ".$err[1]." \n".$err[0]."\n\n";
+}
+echo "------------------------------------------------------------------------".PHP_EOL;
+}
+
+if (file_exists($argv[1])) {
+    $file = new SplFileInfo($argv[1]);
+
+    if ($file->getExtension() !== 'php') {
+        echo 'File must have php extension';
+    } else {
+        $code = file_get_contents($file);
+        $checker = new Linter($code);
+        output($checker->linter());
+    };
+} else {
+    echo "File doesn't exist";
+}
+
+echo PHP_EOL;

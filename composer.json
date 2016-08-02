@@ -1,7 +1,7 @@
 {
     "name": "ctrl-break/hexlet-psr-linter",
-    "bin": ["bin/psrlint"],
     "type": "library",
+    "bin": ["bin/psrlint"],    
     "require-dev": {
         "phpunit/phpunit": "^5.4",
         "squizlabs/php_codesniffer": "^2.6",
