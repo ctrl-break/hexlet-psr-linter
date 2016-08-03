@@ -1,6 +1,7 @@
 {
     "name": "ctrl-break/hexlet-psr-linter",
     "type": "library",
+    "description": "PHP PSR linter library",
     "authors": [
         {
             "name": "Alexander Bashenin",
@@ -19,7 +20,9 @@
     },
     "require": {
         "php": ">=7.0",
-        "nikic/php-parser": "2.*"
+        "nikic/php-parser": "2.*",
+        "lijinma/php-cli-color": "*",
+        "psy/psysh": "*"
     },
     "bin": ["bin/psrlint"]
 }

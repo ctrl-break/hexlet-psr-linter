@@ -20,7 +20,7 @@ class LinterTest extends \PHPUnit_Framework_TestCase
                 }
             ?>');
         $result = $test2->linter();
-        $this->assertEquals(2, count($result));
+        $this->assertEquals(1, count($result));
 
         $test3 = new Linter('
             <?php
@@ -28,7 +28,7 @@ class LinterTest extends \PHPUnit_Framework_TestCase
                 }
             ?>');
         $result = $test3->linter();
-        $this->assertEquals(3, count($result));
+        $this->assertEquals(2, count($result));
 
         $test4 = new Linter('
             <?php
@@ -42,7 +42,7 @@ class LinterTest extends \PHPUnit_Framework_TestCase
               {
               }
 
-              function wrong_func3()
+              function wrong_method3()
               {
               }
             }

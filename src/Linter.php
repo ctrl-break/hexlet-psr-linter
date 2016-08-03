@@ -10,6 +10,8 @@ class Linter
 {
     private $code;
 
+    private $log;
+
     public function __construct($code)
     {
         $this->code = $code;
@@ -24,8 +26,14 @@ class Linter
         try {
             $stmts = $parser->parse($this->code);
             return $traverser->traverse($stmts);
-        } catch (PhpParser\Error $e) {
-            echo 'Parse Error: ', $e->getMessage();
+        } catch (Error $e) {
+          //eval(\Psy\sh());
+            return [
+                        [$e->getMessage()." \nLinter was stopped.",
+                        '0',
+                        '0',
+                        'error', ],
+                       ];
         }
     }
 }

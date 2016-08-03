@@ -26,18 +26,11 @@ abstract class NodeInspector
 
         $err = [];
         if (!in_array($func->name, $magic_methods)) {
-            if (!preg_match('/[a-z]/', $func->name[0])) {
-                $err[] = ['First letter of function name must be in lowercase',
-                          $func->name,
-                          $func->getAttributes(),
-                          'warning',
-                         ];
-            }
-
+            $startLine = $func->getAttributes();
             if (strpos($func->name, '_') !== false) {
                 $err[] = ['Function name should not include the underscore',
                           $func->name,
-                          $func->getAttributes(),
+                          $startLine['startLine'],
                           'warning',
                          ];
             }
@@ -45,7 +38,7 @@ abstract class NodeInspector
             if (!\PHP_CodeSniffer::isCamelCaps($func->name)) {
                 $err[] = ['Function name should be written in camelCase style',
                           $func->name,
-                          $func->getAttributes(),
+                          $startLine['startLine'],
                           'warning',
                          ];
             }
