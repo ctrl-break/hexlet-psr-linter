@@ -9,14 +9,17 @@ function output($errors)
 {
     $counter = 0;
     foreach ($errors as $err) {
-        printf('%-4s', $err[2]['startLine']);
+        printf('%s:%-14s', $err[2]['startLine'], $err[1]);
         printf('%-17s', "\033[35m".$err[3]."\033[0m");
         printf('%-55s', $err[0]);
-        printf('%-12s', $err[1]);
         echo PHP_EOL;
-        $counter++;
+        ++$counter;
     }
-    echo "\033[31m".$counter." problems";
+    if ($counter) {
+        echo "\033[31m".$counter.' problems';
+    } else {
+        echo 'ok';
+    }
 }
 
 if (file_exists($argv[1])) {

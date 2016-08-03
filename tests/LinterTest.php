@@ -29,5 +29,25 @@ class LinterTest extends \PHPUnit_Framework_TestCase
             ?>');
         $result = $test3->linter();
         $this->assertEquals(3, count($result));
+
+        $test4 = new Linter('
+            <?php
+            class ClassName extends AnotherClass
+            {
+              function __construct()
+              {
+              }
+
+              function rightFunc2()
+              {
+              }
+
+              function wrong_func3()
+              {
+              }
+            }
+            ?>');
+        $result = $test4->linter();
+        $this->assertEquals(2, count($result));
     }
 }
