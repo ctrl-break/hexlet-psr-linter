@@ -1,25 +1,25 @@
 {
     "name": "ctrl-break/hexlet-psr-linter",
     "type": "library",
-    "require-dev": {
-        "phpunit/phpunit": "^5.4",
-        "squizlabs/php_codesniffer": "^2.6",
-        "nikic/php-parser": "2.*",
-        "codeclimate/php-test-reporter": "^0.3.2"
-    },
     "authors": [
         {
             "name": "Alexander Bashenin",
             "email": "ctrl-break@mail.ru"
         }
     ],
+    "require-dev": {
+        "phpunit/phpunit": "^5.4",
+        "squizlabs/php_codesniffer": "^2.6",
+        "codeclimate/php-test-reporter": "^0.3.2"
+    },
     "autoload": {
         "psr-4": {
           "HexletPsrLinter\\": "src/"
         }
     },
     "require": {
-        "php": ">=7.0"
+        "php": ">=7.0",
+        "nikic/php-parser": "2.*"
     },
     "bin": ["bin/psrlint"]
 }
