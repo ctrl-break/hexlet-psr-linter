@@ -10,8 +10,6 @@ class Linter
 {
     private $code;
 
-    private $log;
-
     public function __construct($code)
     {
         $this->code = $code;

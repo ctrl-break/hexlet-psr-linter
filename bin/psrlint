@@ -8,7 +8,6 @@ use Lijinma\Color;
 function output($errors)
 {
     $counter = 0;
-    //eval(\Psy\sh());
     foreach ($errors as $err) {
         echo Color::LIGHT_GRAY.$err[2]."\t".$err[1]."\t\t";
         echo Color::YELLOW.$err[3].PHP_EOL;
