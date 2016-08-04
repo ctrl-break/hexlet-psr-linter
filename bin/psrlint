@@ -16,13 +16,13 @@ foreach ($fileNames as $fileName) {
         $linter = new Linter($file->getCode());
         output($linter->linter(), $fileName);
     } else {
-        echo Color::YELLOW.$fileName." ".Color::RED.$file->getError();
+        echo Color::YELLOW.$fileName.' '.Color::RED.$file->getError();
     }
 
     echo PHP_EOL;
 }
 
-function output($errors, $filename = '')
+function output(array $errors, $filename = '')
 {
     echo Color::YELLOW.$filename.PHP_EOL;
     $counter = 0;
