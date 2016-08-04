@@ -4,8 +4,8 @@ namespace HexletPsrLinter;
 
 class FileInspector
 {
-    private $error;
-    private $code;
+    private $error = '';
+    private $code = '';
 
     public function __construct($filename)
     {

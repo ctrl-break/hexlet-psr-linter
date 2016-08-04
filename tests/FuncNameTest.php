@@ -2,7 +2,7 @@
 
 namespace HexletPsrLinter;
 
-class LinterFunctionTest extends \PHPUnit_Framework_TestCase
+class FuncNameTest extends \PHPUnit_Framework_TestCase
 {
     private $test1;
     private $test2;
@@ -13,16 +13,16 @@ class LinterFunctionTest extends \PHPUnit_Framework_TestCase
     {
         $this->test1 = __DIR__.DIRECTORY_SEPARATOR.'fixtures'
                        .DIRECTORY_SEPARATOR.'function'
-                       .DIRECTORY_SEPARATOR.'test1.php';
+                       .DIRECTORY_SEPARATOR.'test1';
         $this->test2 = __DIR__.DIRECTORY_SEPARATOR.'fixtures'
                        .DIRECTORY_SEPARATOR.'function'
-                       .DIRECTORY_SEPARATOR.'test2.php';
+                       .DIRECTORY_SEPARATOR.'test2';
         $this->test3 = __DIR__.DIRECTORY_SEPARATOR.'fixtures'
                        .DIRECTORY_SEPARATOR.'function'
-                       .DIRECTORY_SEPARATOR.'test3.php';
+                       .DIRECTORY_SEPARATOR.'test3';
         $this->test4 = __DIR__.DIRECTORY_SEPARATOR.'fixtures'
                        .DIRECTORY_SEPARATOR.'function'
-                       .DIRECTORY_SEPARATOR.'test4.php';
+                       .DIRECTORY_SEPARATOR.'test4';
     }
 
     public function testFuncName()

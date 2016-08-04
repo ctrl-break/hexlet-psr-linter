@@ -2,8 +2,8 @@
 <?php
 require_once __DIR__.'/../vendor/autoload.php';
 
-use HexletPsrLinter\Linter;
 use HexletPsrLinter\FileInspector;
+use HexletPsrLinter\Linter;
 use Lijinma\Color;
 
 $cmd = new Commando\Command();
