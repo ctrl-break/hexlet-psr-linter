@@ -15,7 +15,7 @@ foreach ($fileNames as $fileName) {
     $file = new FileInspector($fileName);
 
     if ($file->getError() === false) {
-        $linter->setCode($file->getCode());
+        $linter->setCode(file_get_contents($fileName));
         output($linter->linter(), $fileName);
     } else {
         echo Color::YELLOW.$fileName.' '.Color::RED.$file->getError();
