@@ -16,7 +16,7 @@ class Linter
 
     public function setCode($code)
     {
-      $this->code = $code;
+        $this->code = $code;
     }
 
     public function linter()
@@ -29,7 +29,7 @@ class Linter
             $stmts = $parser->parse($this->code);
             return $traverser->traverse($stmts);
         } catch (Error $e) {
-          //eval(\Psy\sh());
+            //eval(\Psy\sh());
             return [
                         ['descr' => $e->getMessage()." \nLinter was stopped.",
                         'funcName' => '-',
