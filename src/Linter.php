@@ -10,9 +10,13 @@ class Linter
 {
     private $code;
 
-    public function __construct($code)
+    public function __construct()
     {
-        $this->code = $code;
+    }
+
+    public function setCode($code)
+    {
+      $this->code = $code;
     }
 
     public function linter()

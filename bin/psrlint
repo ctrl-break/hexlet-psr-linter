@@ -9,11 +9,13 @@ use Lijinma\Color;
 $cmd = new Commando\Command();
 $fileNames = $cmd->getArgumentValues();
 
+$linter = new Linter();
+
 foreach ($fileNames as $fileName) {
     $file = new FileInspector($fileName);
 
     if ($file->getError() === false) {
-        $linter = new Linter($file->getCode());
+        $linter->setCode($file->getCode());
         output($linter->linter(), $fileName);
     } else {
         echo Color::YELLOW.$fileName.' '.Color::RED.$file->getError();

@@ -27,20 +27,22 @@ class FuncNameTest extends \PHPUnit_Framework_TestCase
 
     public function testFuncName()
     {
-        $test1 = new Linter(file_get_contents($this->test1));
-        $result = $test1->linter();
+        $test = new Linter();
+
+        $test->setCode(file_get_contents($this->test1));
+        $result = $test->linter();
         $this->assertEquals(0, count($result));
 
-        $test2 = new Linter(file_get_contents($this->test2));
-        $result = $test2->linter();
+        $test->setCode(file_get_contents($this->test2));
+        $result = $test->linter();
         $this->assertEquals(1, count($result));
 
-        $test3 = new Linter(file_get_contents($this->test3));
-        $result = $test3->linter();
+        $test->setCode(file_get_contents($this->test3));
+        $result = $test->linter();
         $this->assertEquals(2, count($result));
 
-        $test4 = new Linter(file_get_contents($this->test4));
-        $result = $test4->linter();
+        $test->setCode(file_get_contents($this->test4));
+        $result = $test->linter();
         $this->assertEquals(2, count($result));
     }
 }
