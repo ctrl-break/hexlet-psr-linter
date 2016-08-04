@@ -28,18 +28,18 @@ abstract class NodeInspector
         if (!in_array($func->name, $magic_methods)) {
             $startLine = $func->getAttributes();
             if (strpos($func->name, '_') !== false) {
-                $err[] = ['Function name should not include the underscore',
-                          $func->name,
-                          $startLine['startLine'],
-                          'warning',
+                $err[] = ['descr' => 'Function name should not include the underscore',
+                          'funcName' => $func->name,
+                          'startLine' => $startLine['startLine'],
+                          'errorType' => 'warning',
                          ];
             }
 
             if (!\PHP_CodeSniffer::isCamelCaps($func->name)) {
-                $err[] = ['Function name should be written in camelCase style',
-                          $func->name,
-                          $startLine['startLine'],
-                          'warning',
+                $err[] = ['descr' => 'Function name should be written in camelCase style',
+                          'funcName' => $func->name,
+                          'startLine' => $startLine['startLine'],
+                          'errorType' => 'warning',
                          ];
             }
         }

@@ -27,10 +27,10 @@ class Linter
         } catch (Error $e) {
           //eval(\Psy\sh());
             return [
-                        [$e->getMessage()." \nLinter was stopped.",
-                        '0',
-                        '0',
-                        'error', ],
+                        ['descr' => $e->getMessage()." \nLinter was stopped.",
+                        'funcName' => '-',
+                        'startLine' => '0',
+                        'errorType' => 'error', ],
                        ];
         }
     }
