@@ -3,6 +3,7 @@
 require_once __DIR__.'/../vendor/autoload.php';
 
 use HexletPsrLinter\Linter;
+use HexletPsrLinter\FileInspector;
 use Lijinma\Color;
 
 function output($errors)
@@ -21,18 +22,13 @@ function output($errors)
     }
 }
 
-if (file_exists($argv[1])) {
-    $file = new SplFileInfo($argv[1]);
+$file = new FileInspector($argv[1]);
 
-    if ($file->getExtension() !== 'php') {
-        echo 'File must have php extension';
-    } else {
-        $code = file_get_contents($file);
-        $checker = new Linter($code);
-        output($checker->linter());
-    };
+if ($file->getError() === false) {
+    $linter = new Linter($file->getCode());
+    output($linter->linter());
 } else {
-    echo "File doesn't exist";
+    echo Color::RED.$file->getError();
 }
 
 echo PHP_EOL;
