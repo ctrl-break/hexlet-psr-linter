@@ -2,11 +2,9 @@
 
 namespace HexletPsrLinter;
 
-abstract class NodeInspector
+function checkFuncName($func)
 {
-    public static function checkFuncName($func)
-    {
-        $magic_methods = [
+    $magic_methods = [
           '__construct',
           '__destruct',
           '__call',
@@ -24,26 +22,25 @@ abstract class NodeInspector
           '__debugInfo',
         ];
 
-        $err = [];
-        if (!in_array($func->name, $magic_methods)) {
-            $startLine = $func->getAttributes();
-            if (strpos($func->name, '_') !== false) {
-                $err[] = ['descr' => 'Function name should not include the underscore',
+    $err = [];
+    if (!in_array($func->name, $magic_methods)) {
+        $startLine = $func->getAttributes();
+        if (haveUnderscore($func->name) !== false) {
+            $err[] = ['descr' => 'Function name should not include the underscore',
                           'funcName' => $func->name,
                           'startLine' => $startLine['startLine'],
                           'errorType' => 'warning',
                          ];
-            }
-
-            if (!\PHP_CodeSniffer::isCamelCaps($func->name)) {
-                $err[] = ['descr' => 'Function name should be written in camelCase style',
-                          'funcName' => $func->name,
-                          'startLine' => $startLine['startLine'],
-                          'errorType' => 'warning',
-                         ];
-            }
         }
 
-        return $err;
+        if (!isCamelCase($func->name)) {
+            $err[] = ['descr' => 'Function name should be written in camelCase style',
+                          'funcName' => $func->name,
+                          'startLine' => $startLine['startLine'],
+                          'errorType' => 'warning',
+                         ];
+        }
     }
+
+    return $err;
 }

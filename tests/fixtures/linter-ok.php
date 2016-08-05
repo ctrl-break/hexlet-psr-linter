@@ -4,13 +4,6 @@ function someFunc()
 {
 }
 
-function SomeFunction()
-{
-}
-
-function some_Func()
-{
-}
 
 class ClassName extends AnotherClass
 {
@@ -20,11 +13,6 @@ class ClassName extends AnotherClass
   }
 
   public function rigntFunc($value='')
-  {
-    # code...
-  }
-
-  public function WrongFunc($value='')
   {
     # code...
   }

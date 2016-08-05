@@ -13,7 +13,7 @@ class NodeVisitor extends NodeVisitorAbstract
     {
         if (($node instanceof Node\Stmt\Function_) ||
             ($node instanceof Node\Stmt\ClassMethod)) {
-            $this->errors = array_merge($this->errors, NodeInspector::checkFuncName($node));
+            $this->errors = array_merge($this->errors, checkFuncName($node));
         }
     }
 

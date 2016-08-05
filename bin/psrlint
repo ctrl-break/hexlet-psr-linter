@@ -1,43 +1,22 @@
 #!/usr/bin/env php
 <?php
+
 require_once __DIR__.'/../vendor/autoload.php';
 
-use HexletPsrLinter\FileInspector;
-use HexletPsrLinter\Linter;
 use Lijinma\Color;
+use Commando\Command;
+use HexletPsrLinter as hpl;
 
-$cmd = new Commando\Command();
+$cmd = new Command();
 $fileNames = $cmd->getArgumentValues();
 
-$linter = new Linter();
-
 foreach ($fileNames as $fileName) {
-    $file = new FileInspector($fileName);
-
-    if ($file->getError() === false) {
-        $linter->setCode(file_get_contents($fileName));
-        output($linter->linter(), $fileName);
+    $fileError = hpl\checkFile($fileName);
+    if ($fileError === false) {
+        hpl\printResult(hpl\linter(file_get_contents($fileName)), $fileName);
     } else {
-        echo Color::YELLOW.$fileName.' '.Color::RED.$file->getError();
+        echo Color::YELLOW.$fileName.' '.Color::RED.$fileError;
     }
 
     echo PHP_EOL;
-}
-
-function output(array $errors, $filename = '')
-{
-    echo Color::YELLOW.$filename.PHP_EOL;
-    $counter = 0;
-    foreach ($errors as $err) {
-        echo Color::LIGHT_GRAY.$err['startLine']."\t".$err['funcName']."\t\t";
-        echo Color::YELLOW.$err['errorType'].PHP_EOL;
-        echo Color::GREEN.$err['descr'].PHP_EOL;
-        ++$counter;
-    }
-    if ($counter) {
-        echo Color::RED.$counter.' problems';
-    } else {
-        echo 'ok';
-    }
-    echo PHP_EOL.'----------------------------------------------------'.PHP_EOL;
 }
