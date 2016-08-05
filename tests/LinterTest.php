@@ -2,8 +2,6 @@
 
 namespace HexletPsrLinter;
 
-use HexletPsrLinter\linter;
-
 class LinterTest extends \PHPUnit_Framework_TestCase
 {
     private $test1;
@@ -23,5 +21,4 @@ class LinterTest extends \PHPUnit_Framework_TestCase
         $result = linter($this->test2);
         $this->assertNotEquals($result, []);
     }
-
 }

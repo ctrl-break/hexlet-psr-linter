@@ -4,16 +4,14 @@ function someFunc()
 {
 }
 
-
 class ClassName extends AnotherClass
 {
+    public function __construct($argument)
+    {
+    }
 
-  function __construct($argument)
-  {
-  }
-
-  public function rigntFunc($value='')
-  {
-    # code...
-  }
+    public function rigntFunc($value = '')
+    {
+        # code...
+    }
 }

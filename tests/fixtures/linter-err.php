@@ -4,16 +4,14 @@ function WrongFunc()
 {
 }
 
-
 class ClassName extends AnotherClass
 {
+    public function __construct($argument)
+    {
+    }
 
-  function __construct($argument)
-  {
-  }
-
-  public function Wrong_Func($value='')
-  {
-    # code...
-  }
+    public function Wrong_Func($value = '')
+    {
+        # code...
+    }
 }

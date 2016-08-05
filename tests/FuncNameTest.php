@@ -11,5 +11,4 @@ class FuncNameTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(haveUnderscore('some_Func'));
         $this->assertFalse(haveUnderscore('someFunc'));
     }
-
 }

@@ -9,5 +9,5 @@ function isCamelCase($name)
 
 function haveUnderscore($name)
 {
-    return (boolean)strpos($name, '_');
+    return (boolean) strpos($name, '_');
 }
