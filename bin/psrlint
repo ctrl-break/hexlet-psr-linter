@@ -2,7 +2,6 @@
 <?php
 require_once __DIR__.'/../vendor/autoload.php';
 
-use HexletPsrLinter\FileInspector;
 use HexletPsrLinter\Linter;
 use Lijinma\Color;
 
@@ -12,13 +11,11 @@ $fileNames = $cmd->getArgumentValues();
 $linter = new Linter();
 
 foreach ($fileNames as $fileName) {
-    $file = new FileInspector($fileName);
 
-    if ($file->getError() === false) {
-        $linter->setCode(file_get_contents($fileName));
-        output($linter->linter(), $fileName);
+    if (checkFile($fileName) === false) {
+        output($linter->linter(file_get_contents($fileName)), $fileName);
     } else {
-        echo Color::YELLOW.$fileName.' '.Color::RED.$file->getError();
+        echo Color::YELLOW.$fileName.' '.Color::RED.checkFile($fileName);
     }
 
     echo PHP_EOL;
@@ -40,4 +37,20 @@ function output(array $errors, $filename = '')
         echo 'ok';
     }
     echo PHP_EOL.'----------------------------------------------------'.PHP_EOL;
+}
+
+function checkFile($fileName)
+{
+    $error = false;
+    if (file_exists($fileName)) {
+        $file = new \SplFileInfo($fileName);
+
+        if ($file->getExtension() !== 'php') {
+            $error = 'File must have php extension';
+        }
+    } else {
+        $error = "File doesn't exist";
+    }
+
+    return $error;
 }

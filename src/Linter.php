@@ -8,25 +8,14 @@ use PhpParser\ParserFactory;
 
 class Linter
 {
-    private $code;
-
-    public function __construct()
-    {
-    }
-
-    public function setCode($code)
-    {
-        $this->code = $code;
-    }
-
-    public function linter()
+    public function linter($code)
     {
         $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
         $traverser = new NodeTraverser();
         $traverser->addVisitor(new NodeVisitor());
 
         try {
-            $stmts = $parser->parse($this->code);
+            $stmts = $parser->parse($code);
             return $traverser->traverse($stmts);
         } catch (Error $e) {
             //eval(\Psy\sh());
