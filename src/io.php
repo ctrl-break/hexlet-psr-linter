@@ -7,7 +7,7 @@ use Lijinma\Color;
 function printResult(array $errors, $filename = '')
 {
     $exitCode = 0;
-    echo Color::YELLOW.$filename.PHP_EOL;
+    echo PHP_EOL.Color::YELLOW.$filename.PHP_EOL;
     $counter = 0;
     foreach ($errors as $err) {
         echo Color::LIGHT_GRAY.$err['startLine']."\t".$err['name']."\t\t";
@@ -40,7 +40,7 @@ function checkFileErrors($fileName)
                      ];
         }
     } else {
-        $error = ['descr' => "File doesn't exist",
+        $error = ['descr' => "File or directory doesn't exist",
                   'startLine' => '-',
                   'name' => $fileName,
                   'errorType' => 'error',
@@ -48,4 +48,21 @@ function checkFileErrors($fileName)
     }
 
     return $error;
+}
+
+function readDir($path)
+{
+    $files = [];
+    $scanner = new \TheSeer\DirectoryScanner\DirectoryScanner();
+    $scanner->addInclude('*.php');
+
+    if (!substr($path, 0, 1) === '/') {
+        $path = './'.$path;
+    }
+
+    foreach ($scanner($path) as $file) {
+        $files[] = $file->getPathname();
+    }
+
+    return $files;
 }

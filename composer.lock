@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cff9af29c9e6bbcf5d00e882088f0905",
-    "content-hash": "4eb6497aa776955625f51f19c491f08e",
+    "hash": "9c6c898bc40b9ef36f4dae1f0b20f41c",
+    "content-hash": "5f5c443382e3389f8c6378d2022ce44c",
     "packages": [
         {
             "name": "kevinlebrun/colors.php",
@@ -187,6 +187,48 @@
                 "php"
             ],
             "time": "2016-04-19 13:41:41"
+        },
+        {
+            "name": "theseer/directoryscanner",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/theseer/DirectoryScanner.git",
+                "reference": "b1406a99f5e4b1761c84d9e98127c03871bb7b0e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/theseer/DirectoryScanner/zipball/b1406a99f5e4b1761c84d9e98127c03871bb7b0e",
+                "reference": "b1406a99f5e4b1761c84d9e98127c03871bb7b0e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Arne Blankerts",
+                    "email": "arne@blankerts.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A recursive directory scanner and filter",
+            "time": "2014-11-25 14:27:49"
         }
     ],
     "packages-dev": [

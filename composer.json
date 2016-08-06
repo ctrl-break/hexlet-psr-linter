@@ -29,7 +29,8 @@
         "php": ">=7.0",
         "nikic/php-parser": "2.*",
         "lijinma/php-cli-color": "*",
-        "nategood/commando": "*"
+        "nategood/commando": "*",
+        "theseer/directoryscanner": "*"
     },
     "bin": ["bin/psrlint"]
 }

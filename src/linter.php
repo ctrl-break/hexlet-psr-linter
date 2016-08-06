@@ -26,15 +26,23 @@ function linter($code)
     }
 }
 
-function run($fileNames)
+function run($path)
 {
     $exitCode = 0;
-    foreach ($fileNames as $fileName) {
-        $errors = checkFileErrors($fileName);
+
+    if (is_dir($path)) {
+        $files = readDir($path);
+    } else {
+        $files = [$path];
+    }
+    //eval(\Psy\sh());
+
+    foreach ($files as $file) {
+        $errors = checkFileErrors($file);
         if (!$errors) {
-            $exitCode = printResult(linter(file_get_contents($fileName)), $fileName);
+            $exitCode = printResult(linter(file_get_contents($file)), $file);
         } else {
-            $exitCode = printResult([$errors], $fileName);
+            $exitCode = printResult([$errors], $file);
         }
     }
 
