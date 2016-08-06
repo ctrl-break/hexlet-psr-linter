@@ -1,5 +1,7 @@
 <?php
 
+namespace HexletPsrLinter;
+
 function someFunc()
 {
 }
