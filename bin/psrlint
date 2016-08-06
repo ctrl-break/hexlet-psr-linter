@@ -7,6 +7,11 @@ use Commando\Command;
 use HexletPsrLinter as hpl;
 
 $cmd = new Command();
-$fileNames = $cmd->getArgumentValues();
 
-hpl\run($fileNames);
+$cmd->option()
+    ->aka('path')
+    ->require()
+    ->describedAs('File path');
+//eval(\Psy\sh());
+
+exit(hpl\run([$cmd['path']]));

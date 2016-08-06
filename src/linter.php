@@ -17,24 +17,26 @@ function linter($code)
 
         return $traverser->traverse($stmts);
     } catch (Error $e) {
-        //eval(\Psy\sh());
-            return [
-                        ['descr' => $e->getMessage()." \nLinter was stopped.",
+        printResult([['descr' => $e->getMessage()." \nLinter was stopped.",
                              'name' => '-',
                         'startLine' => '0',
                         'errorType' => 'error', ],
-                       ];
+                       ]);
+        exit(2);
     }
 }
 
 function run($fileNames)
 {
+    $exitCode = 0;
     foreach ($fileNames as $fileName) {
         $errors = checkFileErrors($fileName);
         if (!$errors) {
-            printResult(linter(file_get_contents($fileName)), $fileName);
+            $exitCode = printResult(linter(file_get_contents($fileName)), $fileName);
         } else {
-            printResult([$errors], $fileName);
+            $exitCode = printResult([$errors], $fileName);
         }
     }
+
+    return $exitCode;
 }

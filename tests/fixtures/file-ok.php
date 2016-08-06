@@ -1,6 +1,8 @@
 <?php
 
-class ClassName extends AnotherClass
+namespace HexletPsrLinter;
+
+class ClassName
 {
     public function __construct($argument)
     {

@@ -6,6 +6,7 @@ use Lijinma\Color;
 
 function printResult(array $errors, $filename = '')
 {
+    $exitCode = 0;
     echo Color::YELLOW.$filename.PHP_EOL;
     $counter = 0;
     foreach ($errors as $err) {
@@ -16,10 +17,13 @@ function printResult(array $errors, $filename = '')
     }
     if ($counter) {
         echo Color::RED.$counter.' problems';
+        $exitCode = 1;
     } else {
         echo 'ok';
     }
     echo PHP_EOL.'----------------------------------------------------'.PHP_EOL;
+
+    return $exitCode;
 }
 
 function checkFileErrors($fileName)
