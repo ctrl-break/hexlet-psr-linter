@@ -8,7 +8,7 @@ class ClassName
     {
     }
 
-    public function rigntFunc($value = '')
+    public function rightFunc($value = '')
     {
         # code...
     }

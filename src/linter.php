@@ -20,7 +20,7 @@ function linter($code)
         return [['descr' => $e->getMessage()." \nLinter was stopped.",
                              'name' => '-',
                         'startLine' => '0',
-                        'errorType' => 'error',
+                        'errorType' => 'parse error',
                 ],
                ];
     }
@@ -39,10 +39,14 @@ function run($path)
     foreach ($files as $file) {
         $errors = checkFileErrors($file);
         if (!$errors) {
-            $result[$file] = linter(file_get_contents($file));
+            $linter = linter(file_get_contents($file));
+            if ($linter) {
+                $result[$file] = $linter;
+            }
         } else {
             $result[$file] = [$errors];
         }
     }
+
     return $result;
 }

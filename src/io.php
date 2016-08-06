@@ -6,7 +6,6 @@ use Lijinma\Color;
 
 function printResult(array $errors, $filename = '')
 {
-    $exitCode = 0;
     echo PHP_EOL.Color::YELLOW.$filename.PHP_EOL;
     $counter = 0;
     foreach ($errors as $err) {
@@ -17,13 +16,8 @@ function printResult(array $errors, $filename = '')
     }
     if ($counter) {
         echo Color::RED.$counter.' problems';
-        $exitCode = 1;
-    } else {
-        echo Color::GREEN.'ok';
     }
     echo PHP_EOL.'----------------------------------------------------'.PHP_EOL;
-
-    return $exitCode;
 }
 
 function checkFileErrors($filename)
@@ -40,7 +34,7 @@ function checkFileErrors($filename)
                      ];
         }
     } else {
-            $error = ['descr' => "File or directory doesn't exist",
+        $error = ['descr' => "File or directory doesn't exist",
                       'startLine' => '-',
                       'name' => $filename,
                       'errorType' => 'error',

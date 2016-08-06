@@ -13,19 +13,16 @@ $cmd->option()
     ->require()
     ->describedAs('File path');
 
-
-$errors = 0;
 $result = hpl\run($cmd['path']);
 
-foreach ($result as $key => $item) {
-    hpl\printResult($item, $key);
-    if (!empty($item)) {
-        ++$errors;
+if (!empty($result)) {
+    $exitCode = 1;
+    foreach ($result as $key => $item) {
+        hpl\printResult($item, $key);
     }
+} else {
+    $exitCode = 0;
+    echo "\nAll files are correct.\n";
 }
 //eval(\Psy\sh());
-$exitCode = 0;
-if ($errors) {
-    $exitCode = 1;
-}
 exit($exitCode);
