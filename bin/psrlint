@@ -12,6 +12,17 @@ $cmd->option()
     ->aka('path')
     ->require()
     ->describedAs('File path');
-//eval(\Psy\sh());
 
-exit(hpl\run([$cmd['path']]));
+$result = hpl\run($cmd['path']);
+
+if (!empty($result)) {
+    $exitCode = 1;
+    foreach ($result as $key => $item) {
+        hpl\printResult($item, $key);
+    }
+} else {
+    $exitCode = 0;
+    echo "\nAll files are correct.\n";
+}
+//eval(\Psy\sh());
+exit($exitCode);
