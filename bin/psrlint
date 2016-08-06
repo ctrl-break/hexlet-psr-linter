@@ -12,6 +12,20 @@ $cmd->option()
     ->aka('path')
     ->require()
     ->describedAs('File path');
-//eval(\Psy\sh());
 
-exit(hpl\run($cmd['path']));
+
+$errors = 0;
+$result = hpl\run($cmd['path']);
+
+foreach ($result as $key => $item) {
+    hpl\printResult($item, $key);
+    if (!empty($item)) {
+        ++$errors;
+    }
+}
+//eval(\Psy\sh());
+$exitCode = 0;
+if ($errors) {
+    $exitCode = 1;
+}
+exit($exitCode);

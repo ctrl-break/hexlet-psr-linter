@@ -28,8 +28,7 @@ function linter($code)
 
 function run($path)
 {
-    $exitCode = 0;
-
+    $result = [];
     if (is_dir($path)) {
         $files = readDir($path);
     } else {
@@ -40,11 +39,10 @@ function run($path)
     foreach ($files as $file) {
         $errors = checkFileErrors($file);
         if (!$errors) {
-            $exitCode = printResult(linter(file_get_contents($file)), $file);
+            $result[$file] = linter(file_get_contents($file));
         } else {
-            $exitCode = printResult([$errors], $file);
+            $result[$file] = [$errors];
         }
     }
-
-    return $exitCode;
+    return $result;
 }
