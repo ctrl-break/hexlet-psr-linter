@@ -4,7 +4,7 @@ function someFunc()
 {
 }
 
-class ClassName extends AnotherClass
+class ClassName
 {
     public function __construct($argument)
     {

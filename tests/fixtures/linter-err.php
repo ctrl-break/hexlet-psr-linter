@@ -1,16 +1,18 @@
 <?php
 
+namespace HexletPsrLinter;
+
 function WrongFunc()
 {
 }
 
-class ClassName extends AnotherClass
+class ClassName
 {
     public function __construct($argument)
     {
     }
 
-    public function Wrong_Func($value = '')
+    public function Wrong_Func2($value = '')
     {
         # code...
     }

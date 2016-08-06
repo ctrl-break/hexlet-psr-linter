@@ -17,12 +17,12 @@ function linter($code)
 
         return $traverser->traverse($stmts);
     } catch (Error $e) {
-        printResult([['descr' => $e->getMessage()." \nLinter was stopped.",
+        return [['descr' => $e->getMessage()." \nLinter was stopped.",
                              'name' => '-',
                         'startLine' => '0',
-                        'errorType' => 'error', ],
-                       ]);
-        exit(2);
+                        'errorType' => 'error',
+                ],
+               ];
     }
 }
 

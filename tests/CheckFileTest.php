@@ -11,7 +11,7 @@ class CheckFileTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->test1 = 'tests/fixtures/file-ok.php';
-        $this->test2 = 'tests/fixtures/file-err';
+        $this->test2 = 'tests/fixtures/file-err.php';
         $this->test3 = 'tests/fixtures/file-err.ph';
     }
 
