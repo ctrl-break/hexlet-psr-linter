@@ -9,7 +9,7 @@ function printResult(array $errors, $filename = '')
     echo Color::YELLOW.$filename.PHP_EOL;
     $counter = 0;
     foreach ($errors as $err) {
-        echo Color::LIGHT_GRAY.$err['startLine']."\t".$err['funcName']."\t\t";
+        echo Color::LIGHT_GRAY.$err['startLine']."\t".$err['name']."\t\t";
         echo Color::YELLOW.$err['errorType'].PHP_EOL;
         echo Color::GREEN.$err['descr'].PHP_EOL;
         ++$counter;
@@ -22,17 +22,25 @@ function printResult(array $errors, $filename = '')
     echo PHP_EOL.'----------------------------------------------------'.PHP_EOL;
 }
 
-function checkFile($fileName)
+function checkFileErrors($fileName)
 {
     $error = false;
     if (file_exists($fileName)) {
         $file = new \SplFileInfo($fileName);
 
         if ($file->getExtension() !== 'php') {
-            $error = 'File must have php extension';
+            $error = ['descr' => 'File must have php extension',
+                      'startLine' => '-',
+                      'name' => $fileName,
+                      'errorType' => 'error',
+                     ];
         }
     } else {
-        $error = "File doesn't exist";
+        $error = ['descr' => "File doesn't exist",
+                  'startLine' => '-',
+                  'name' => $fileName,
+                  'errorType' => 'error',
+                 ];
     }
 
     return $error;

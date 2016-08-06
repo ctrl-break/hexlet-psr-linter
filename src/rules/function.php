@@ -27,7 +27,7 @@ function checkFuncName($func)
         $startLine = $func->getAttributes();
         if (haveUnderscore($func->name) !== false) {
             $err[] = ['descr' => 'Function name should not include the underscore',
-                          'funcName' => $func->name,
+                          'name' => $func->name,
                           'startLine' => $startLine['startLine'],
                           'errorType' => 'warning',
                          ];
@@ -35,7 +35,7 @@ function checkFuncName($func)
 
         if (!isCamelCase($func->name)) {
             $err[] = ['descr' => 'Function name should be written in camelCase style',
-                          'funcName' => $func->name,
+                          'name' => $func->name,
                           'startLine' => $startLine['startLine'],
                           'errorType' => 'warning',
                          ];

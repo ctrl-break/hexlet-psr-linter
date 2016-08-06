@@ -3,20 +3,10 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-use Lijinma\Color;
 use Commando\Command;
 use HexletPsrLinter as hpl;
 
 $cmd = new Command();
 $fileNames = $cmd->getArgumentValues();
 
-foreach ($fileNames as $fileName) {
-    $fileError = hpl\checkFile($fileName);
-    if ($fileError === false) {
-        hpl\printResult(hpl\linter(file_get_contents($fileName)), $fileName);
-    } else {
-        echo Color::YELLOW.$fileName.' '.Color::RED.$fileError;
-    }
-
-    echo PHP_EOL;
-}
+hpl\run($fileNames);
