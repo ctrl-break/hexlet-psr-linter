@@ -14,6 +14,5 @@ class ReadDirTest extends \PHPUnit_Framework_TestCase
     public function testReadDir()
     {
         $this->assertEquals(count(readDir($this->test1)), 4);
-
     }
 }

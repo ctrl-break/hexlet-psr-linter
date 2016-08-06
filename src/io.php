@@ -19,32 +19,32 @@ function printResult(array $errors, $filename = '')
         echo Color::RED.$counter.' problems';
         $exitCode = 1;
     } else {
-        echo 'ok';
+        echo Color::GREEN.'ok';
     }
     echo PHP_EOL.'----------------------------------------------------'.PHP_EOL;
 
     return $exitCode;
 }
 
-function checkFileErrors($fileName)
+function checkFileErrors($filename)
 {
     $error = false;
-    if (file_exists($fileName)) {
-        $file = new \SplFileInfo($fileName);
+    if (file_exists($filename)) {
+        $file = new \SplFileInfo($filename);
 
         if ($file->getExtension() !== 'php') {
             $error = ['descr' => 'File must have php extension',
                       'startLine' => '-',
-                      'name' => $fileName,
+                      'name' => $filename,
                       'errorType' => 'error',
                      ];
         }
     } else {
-        $error = ['descr' => "File or directory doesn't exist",
-                  'startLine' => '-',
-                  'name' => $fileName,
-                  'errorType' => 'error',
-                 ];
+            $error = ['descr' => "File or directory doesn't exist",
+                      'startLine' => '-',
+                      'name' => $filename,
+                      'errorType' => 'error',
+                     ];
     }
 
     return $error;

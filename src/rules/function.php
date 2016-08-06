@@ -4,7 +4,7 @@ namespace HexletPsrLinter;
 
 function checkFuncName($func)
 {
-    $magic_methods = [
+    $magicMethods = [
           '__construct',
           '__destruct',
           '__call',
@@ -23,7 +23,7 @@ function checkFuncName($func)
         ];
 
     $err = [];
-    if (!in_array($func->name, $magic_methods)) {
+    if (!in_array($func->name, $magicMethods)) {
         $startLine = $func->getAttributes();
         if (haveUnderscore($func->name) !== false) {
             $err[] = ['descr' => 'Function name should not include the underscore',
