@@ -22,6 +22,7 @@
             "src/io.php",
             "src/linter.php",
             "src/rules/common.php",
+            "src/rules/var.php",
             "src/rules/function.php"
         ]
     },
