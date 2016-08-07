@@ -15,6 +15,15 @@ class NodeVisitor extends NodeVisitorAbstract
             ($node instanceof Node\Stmt\ClassMethod)) {
             $this->errors = array_merge($this->errors, checkFuncName($node));
         }
+
+        if ($node instanceof Node\Expr\Variable) {
+            $this->errors = array_merge(
+                $this->errors,
+                checkVarName($node)
+            );
+        }
+
+        //eval(\Psy\sh());
     }
 
     public function afterTraverse(array $nodes)
