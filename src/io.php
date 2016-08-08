@@ -6,16 +6,16 @@ use Lijinma\Color;
 
 function printResult(array $errors, $filename = '')
 {
-    echo PHP_EOL.Color::YELLOW.$filename.PHP_EOL;
+    echo PHP_EOL.Color::WHITE.$filename.PHP_EOL;
     $counter = 0;
     foreach ($errors as $err) {
-        echo Color::LIGHT_GRAY.$err['startLine']."\t".$err['name']."\t\t";
+        echo Color::GREEN.$err['startLine']."\t".$err['name']."\t\t";
         echo Color::YELLOW.$err['errorType'].PHP_EOL;
-        echo Color::GREEN.$err['descr'].PHP_EOL;
+        echo Color::LIGHT_GRAY.$err['descr'].PHP_EOL;
         ++$counter;
     }
     if ($counter) {
-        echo Color::RED.$counter.' problems';
+        echo Color::LIGHT_RED.$counter.' problems';
     }
     echo PHP_EOL.'----------------------------------------------------'.PHP_EOL;
 }
