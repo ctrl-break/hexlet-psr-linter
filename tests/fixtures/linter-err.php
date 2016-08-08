@@ -10,6 +10,11 @@ function WrongFunc()
     $varname4 = 0;
 }
 
+function foo()
+{
+    return 'bar';
+}
+
 class ClassName
 {
     public function __construct($argument)
@@ -21,3 +26,5 @@ class ClassName
         # code...
     }
 }
+
+foo();

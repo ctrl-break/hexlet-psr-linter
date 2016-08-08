@@ -16,7 +16,7 @@ class LinterTest extends \PHPUnit_Framework_TestCase
     public function testLinter()
     {
         $result = linter($this->test1);
-        $this->assertEquals($result, []);
+        $this->assertFalse($result);
 
         $result = linter($this->test2);
         $this->assertNotEquals($result, []);

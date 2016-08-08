@@ -6,10 +6,10 @@ class VarNameTest extends \PHPUnit_Framework_TestCase
 {
     public function testVarName()
     {
-        $this->assertTrue(correctVarName('varName'));
-        $this->assertTrue(correctVarName('varNameVeryVeryLongName'));
-        $this->assertTrue(correctVarName('varname'));
-        $this->assertFalse(correctVarName('var_name'));
-        $this->assertFalse(correctVarName('VarName'));
+        $this->assertTrue(isCorrectVarName('varName'));
+        $this->assertTrue(isCorrectVarName('varNameVeryVeryLongName'));
+        $this->assertTrue(isCorrectVarName('varname'));
+        $this->assertFalse(isCorrectVarName('var_name'));
+        $this->assertFalse(isCorrectVarName('VarName'));
     }
 }
