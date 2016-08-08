@@ -4,7 +4,7 @@ namespace HexletPsrLinter;
 
 use PhpParser\Node;
 
-function validateSideEffectAndDeclaration(array $nodes)
+function hasSideEffectAndDeclaration(array $nodes)
 {
     if ($nodes[0] instanceof Node\Stmt\Namespace_) {
         $nodes = $nodes[0]->stmts;
@@ -28,7 +28,7 @@ function validateSideEffectAndDeclaration(array $nodes)
 
 function checkSideEffect(array $nodes)
 {
-    if (validateSideEffectAndDeclaration($nodes)) {
+    if (hasSideEffectAndDeclaration($nodes)) {
         return [['descr' => 'A file SHOULD declare new symbols (classes, functions, constants, etc.)
 and cause no other side effects, or it SHOULD execute logic with side effects,
 but SHOULD NOT do both.',
@@ -36,7 +36,7 @@ but SHOULD NOT do both.',
                     'startLine' => '1',
                     'errorType' => 'warning',
              ]];
-    } else {
-        return false;
-    }
+    };
+
+    return false;
 }

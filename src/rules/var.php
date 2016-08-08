@@ -2,14 +2,14 @@
 
 namespace HexletPsrLinter;
 
-function validateVarName($name)
+function isCorrectVarName($name)
 {
     return isCamelCase($name);
 }
 
 function checkVarName($var)
 {
-    if (validateVarName($var->name)) {
+    if (isCorrectVarName($var->name)) {
         return false;
     }
     $startLine = $var->getAttributes();

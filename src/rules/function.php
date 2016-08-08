@@ -2,7 +2,7 @@
 
 namespace HexletPsrLinter;
 
-function validateFuncName($name)
+function isCorrectFuncName($name)
 {
     $magicMethods = [
         '__construct',
@@ -29,7 +29,7 @@ function validateFuncName($name)
 
 function checkFuncName($func)
 {
-    if (validateFuncName($func->name)) {
+    if (isCorrectFuncName($func->name)) {
         return false;
     }
 

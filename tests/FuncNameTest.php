@@ -6,10 +6,10 @@ class FuncNameTest extends \PHPUnit_Framework_TestCase
 {
     public function testFuncName()
     {
-        $this->assertTrue(validateFuncName('rightFunc'));
-        $this->assertTrue(validateFuncName('__construct'));
-        $this->assertFalse(validateFuncName('WrongFunc'));
-        $this->assertFalse(validateFuncName('wrong_Func'));
-        $this->assertFalse(validateFuncName('_someFunc'));
+        $this->assertTrue(isCorrectFuncName('rightFunc'));
+        $this->assertTrue(isCorrectFuncName('__construct'));
+        $this->assertFalse(isCorrectFuncName('WrongFunc'));
+        $this->assertFalse(isCorrectFuncName('wrong_Func'));
+        $this->assertFalse(isCorrectFuncName('_someFunc'));
     }
 }
