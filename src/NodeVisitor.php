@@ -9,6 +9,11 @@ class NodeVisitor extends NodeVisitorAbstract
 {
     private $errors = [];
 
+    public function beforeTraverse(array $nodes)
+    {
+        $this->errors = checkSideEffect($nodes);
+    }
+
     public function leaveNode(Node $node)
     {
         if (($node instanceof Node\Stmt\Function_) ||
@@ -17,13 +22,8 @@ class NodeVisitor extends NodeVisitorAbstract
         }
 
         if ($node instanceof Node\Expr\Variable) {
-            $this->errors = array_merge(
-                $this->errors,
-                checkVarName($node)
-            );
+            $this->errors = array_merge($this->errors, checkVarName($node));
         }
-
-        //eval(\Psy\sh());
     }
 
     public function afterTraverse(array $nodes)

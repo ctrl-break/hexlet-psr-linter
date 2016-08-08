@@ -50,7 +50,7 @@ function readDir($path)
     $scanner = new \TheSeer\DirectoryScanner\DirectoryScanner();
     $scanner->addInclude('*.php');
 
-    if (!substr($path, 0, 1) === '/') {
+    if (substr($path, 0, 1) !== '/') {
         $path = './'.$path;
     }
 

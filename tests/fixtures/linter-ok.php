@@ -4,16 +4,17 @@ namespace HexletPsrLinter;
 
 function someFunc()
 {
+    return false;
 }
 
 class ClassName
 {
-    public function __construct($argument)
+    public function __construct()
     {
     }
 
-    public function rightFunc($value = '')
+    public function rightFunc()
     {
-        # code...
+        return false;
     }
 }

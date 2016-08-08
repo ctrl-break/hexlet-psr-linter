@@ -23,6 +23,7 @@
             "src/linter.php",
             "src/rules/common.php",
             "src/rules/var.php",
+            "src/rules/sideeffect.php",
             "src/rules/function.php"
         ]
     },

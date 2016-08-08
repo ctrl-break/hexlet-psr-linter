@@ -25,7 +25,7 @@ function checkFuncName($func)
     $err = [];
     if (!in_array($func->name, $magicMethods)) {
         $startLine = $func->getAttributes();
-        if (haveUnderscore($func->name) !== false) {
+        if (hasUnderscore($func->name) !== false) {
             $err[] = ['descr' => 'Function name should not include the underscore',
                           'name' => $func->name,
                           'startLine' => $startLine['startLine'],

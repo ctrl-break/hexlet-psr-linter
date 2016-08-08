@@ -8,7 +8,7 @@ class FuncNameTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(isCamelCase('rightFunc'));
         $this->assertFalse(isCamelCase('WrongFunc'));
-        $this->assertTrue(haveUnderscore('some_Func'));
-        $this->assertFalse(haveUnderscore('someFunc'));
+        $this->assertTrue(hasUnderscore('some_Func'));
+        $this->assertFalse(hasUnderscore('someFunc'));
     }
 }
