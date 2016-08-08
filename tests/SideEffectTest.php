@@ -24,8 +24,8 @@ class SideEffectTest extends \PHPUnit_Framework_TestCase
 
     public function testCheckSideEffect()
     {
-        $this->assertFalse(hasSideEffectAndDeclaration($this->test1));
-        $this->assertFalse(hasSideEffectAndDeclaration($this->test2));
-        $this->assertTrue(hasSideEffectAndDeclaration($this->test3));
+        $this->assertFalse(validateSideEffectAndDeclaration($this->test1));
+        $this->assertFalse(validateSideEffectAndDeclaration($this->test2));
+        $this->assertTrue(validateSideEffectAndDeclaration($this->test3));
     }
 }
