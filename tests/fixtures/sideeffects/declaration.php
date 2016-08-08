@@ -2,6 +2,8 @@
 
 namespace HexletPsrLinter;
 
+use PhpParser\Node;
+
 class ClassName
 {
     public function __construct()

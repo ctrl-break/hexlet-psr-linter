@@ -15,7 +15,8 @@ function hasSideEffectAndDeclaration(array $nodes)
 
     foreach ($nodes as $node) {
         if (($node instanceof Node\Stmt\Class_) ||
-          ($node instanceof Node\Stmt\Function_)) {
+          ($node instanceof Node\Stmt\Function_)
+          || ($node instanceof Node\Stmt\Use_)) {
             $declaration = true;
         } else {
             $sideEffect = true;
