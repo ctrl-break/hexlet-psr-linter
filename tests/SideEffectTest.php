@@ -13,16 +13,13 @@ class SideEffectTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $parser1 = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
-        $this->test1 = $parser1->parse(file_get_contents(
-            'tests/fixtures/sideeffects/sideeffect.php'));
+        $this->test1 = $parser1->parse(file_get_contents('tests/fixtures/sideeffects/sideeffect.php'));
 
         $parser2 = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
-        $this->test2 = $parser2->parse(file_get_contents(
-            'tests/fixtures/sideeffects/declaration.php'));
+        $this->test2 = $parser2->parse(file_get_contents('tests/fixtures/sideeffects/declaration.php'));
 
         $parser3 = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
-        $this->test3 = $parser3->parse(file_get_contents(
-            'tests/fixtures/sideeffects/se_plus_declaration.php'));
+        $this->test3 = $parser3->parse(file_get_contents('tests/fixtures/sideeffects/se_plus_declaration.php'));
     }
 
     public function testCheckSideEffect()
