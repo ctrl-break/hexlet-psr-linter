@@ -4,10 +4,17 @@ namespace HexletPsrLinter;
 
 use PhpParser\Node;
 use PhpParser\NodeVisitorAbstract;
+use PhpParser\PrettyPrinter;
 
 class NodeVisitor extends NodeVisitorAbstract
 {
     private $errors = [];
+    private $fix = false;
+
+    public function __construct($fix)
+    {
+        $this->fix = $fix;
+    }
 
     public function beforeTraverse(array $nodes)
     {
@@ -23,6 +30,11 @@ class NodeVisitor extends NodeVisitorAbstract
             ($node instanceof Node\Stmt\ClassMethod)) {
             $result = checkFuncName($node);
             if ($result) {
+                if ($this->fix) {
+                    $node->name = fixFuncName($node->name);
+                    $result[0]['errorType'] = 'fixed';
+                    $result[0]['name'] = $result[0]['name'].' -> '.$node->name;
+                }
                 $this->errors = array_merge($this->errors, $result);
             }
         }
@@ -30,6 +42,11 @@ class NodeVisitor extends NodeVisitorAbstract
         if ($node instanceof Node\Expr\Variable) {
             $result = checkVarName($node);
             if ($result) {
+                if ($this->fix) {
+                    $node->name = fixVarName($node->name);
+                    $result[0]['errorType'] = 'fixed';
+                    $result[0]['name'] = $result[0]['name'].' -> '.$node->name;
+                }
                 $this->errors = array_merge($this->errors, $result);
             }
         }
@@ -38,9 +55,15 @@ class NodeVisitor extends NodeVisitorAbstract
     public function afterTraverse(array $nodes)
     {
         if (empty($this->errors)) {
-            return false;
+            return [false, ''];
         }
 
-        return $this->errors;
+        $fixedCode = '';
+        if ($this->fix) {
+            $prettyPrinter = new PrettyPrinter\Standard();
+            $fixedCode = $prettyPrinter->prettyPrintFile($nodes);
+        }
+
+        return [$this->errors, $fixedCode];
     }
 }

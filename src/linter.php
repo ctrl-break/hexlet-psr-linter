@@ -6,11 +6,11 @@ use PhpParser\Error;
 use PhpParser\NodeTraverser;
 use PhpParser\ParserFactory;
 
-function linter($code)
+function linter($code, $fix = false)
 {
     $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
     $traverser = new NodeTraverser();
-    $traverser->addVisitor(new NodeVisitor());
+    $traverser->addVisitor(new NodeVisitor($fix));
 
     try {
         $stmts = $parser->parse($code);
@@ -26,7 +26,7 @@ function linter($code)
     }
 }
 
-function run($path)
+function run($path, $fix = false)
 {
     $result = [];
     if (is_dir($path)) {
@@ -39,8 +39,12 @@ function run($path)
     foreach ($files as $file) {
         $errors = checkFileErrors($file);
         if (!$errors) {
-            $linter = linter(file_get_contents($file));
+            list($linter, $fixedCode) = linter(file_get_contents($file), $fix);
+
             if ($linter) {
+                if ($fix) {
+                    writeFixedCode($file, $fixedCode);
+                }
                 $result[$file] = $linter;
             }
         } else {

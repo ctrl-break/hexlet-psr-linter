@@ -12,10 +12,14 @@ function printResult(array $errors, $filename = '')
         echo Color::GREEN.$err['startLine']."\t".$err['name']."\t\t";
         echo Color::YELLOW.$err['errorType'].PHP_EOL;
         echo Color::LIGHT_GRAY.$err['descr'].PHP_EOL;
-        ++$counter;
+        if ($err['errorType'] !== 'fixed') {
+            ++$counter;
+        }
     }
     if ($counter) {
         echo Color::LIGHT_RED.$counter.' problems';
+    } else {
+        echo Color::GREEN."\tok";
     }
     echo PHP_EOL.'----------------------------------------------------'.PHP_EOL;
 }
@@ -59,4 +63,9 @@ function readDir($path)
     }
 
     return $files;
+}
+
+function writeFixedCode($file, $fixedCode)
+{
+    return file_put_contents($file, $fixedCode . "\n");
 }

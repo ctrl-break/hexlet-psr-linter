@@ -41,3 +41,8 @@ function checkFuncName($func)
                           'errorType' => 'warning',
            ]];
 }
+
+function fixFuncName($func)
+{
+    return underscoreToCamelCase($func);
+}

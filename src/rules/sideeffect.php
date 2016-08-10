@@ -14,9 +14,9 @@ function hasSideEffectAndDeclaration(array $nodes)
     $declaration = false;
 
     foreach ($nodes as $node) {
-        if (($node instanceof Node\Stmt\Class_) ||
-          ($node instanceof Node\Stmt\Function_)
-          || ($node instanceof Node\Stmt\Use_)) {
+        if (($node instanceof Node\Stmt\Class_)
+              || ($node instanceof Node\Stmt\Function_)
+              || ($node instanceof Node\Stmt\Use_)) {
             $declaration = true;
         } else {
             $sideEffect = true;

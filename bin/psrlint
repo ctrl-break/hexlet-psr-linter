@@ -13,7 +13,9 @@ $cmd->option()
     ->require()
     ->describedAs('File path');
 
-$result = hpl\run($cmd['path']);
+$fix = false;
+
+$result = hpl\run($cmd['path'], $fix);
 
 if (!empty($result)) {
     $exitCode = 1;
