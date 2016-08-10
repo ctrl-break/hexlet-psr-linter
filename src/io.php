@@ -24,7 +24,7 @@ function printResult(array $errors, $filename = '')
     echo PHP_EOL.'----------------------------------------------------'.PHP_EOL;
 }
 
-function checkFileErrors($filename)
+function checkFileErrors($filename, $fix = false)
 {
     $error = false;
     if (file_exists($filename)) {
@@ -36,13 +36,21 @@ function checkFileErrors($filename)
                       'name' => $filename,
                       'errorType' => 'error',
                      ];
+        } else {
+            if ($fix && !is_writable($filename)) {
+                $error = ['descr' => 'Error writing to file.',
+                          'startLine' => '-',
+                          'name' => $filename,
+                          'errorType' => 'error',
+                       ];
+            }
         }
     } else {
         $error = ['descr' => "File or directory doesn't exist",
-                      'startLine' => '-',
-                      'name' => $filename,
-                      'errorType' => 'error',
-                     ];
+                  'startLine' => '-',
+                  'name' => $filename,
+                  'errorType' => 'error',
+                 ];
     }
 
     return $error;
