@@ -24,6 +24,7 @@ function isCorrectFuncName($name)
     if (!in_array($name, $magicMethods)) {
         return isCamelCase($name);
     };
+
     return true;
 }
 

@@ -67,5 +67,5 @@ function readDir($path)
 
 function writeFixedCode($file, $fixedCode)
 {
-    return file_put_contents($file, $fixedCode . "\n");
+    return file_put_contents($file, $fixedCode."\n");
 }

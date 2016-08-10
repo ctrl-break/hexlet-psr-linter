@@ -13,9 +13,13 @@ $cmd->option()
     ->require()
     ->describedAs('File path');
 
-$fix = false;
+$cmd->option('f')
+    ->aka('fix')
+    ->boolean()
+    ->default(false)
+    ->describedAs('Fix files errors');
 
-$result = hpl\run($cmd['path'], $fix);
+$result = hpl\run($cmd['path'], $cmd['fix']);
 
 if (!empty($result)) {
     $exitCode = 1;
