@@ -20,7 +20,7 @@ class NodeVisitor extends NodeVisitorAbstract
     {
         $result = checkSideEffect($nodes);
         if ($result) {
-            $this->errors = $result;
+            $this->errors[] = $result;
         }
     }
 
@@ -32,10 +32,10 @@ class NodeVisitor extends NodeVisitorAbstract
             if ($result) {
                 if ($this->fix) {
                     $node->name = fixFuncName($node->name);
-                    $result[0]['errorType'] = 'fixed';
-                    $result[0]['name'] = $result[0]['name'].' -> '.$node->name;
+                    $result['errorType'] = 'fixed';
+                    $result['name'] = $result['name'].' -> '.$node->name;
                 }
-                $this->errors = array_merge($this->errors, $result);
+                $this->errors[] = $result;
             }
         }
 
@@ -44,10 +44,10 @@ class NodeVisitor extends NodeVisitorAbstract
             if ($result) {
                 if ($this->fix) {
                     $node->name = fixVarName($node->name);
-                    $result[0]['errorType'] = 'fixed';
-                    $result[0]['name'] = $result[0]['name'].' -> '.$node->name;
+                    $result['errorType'] = 'fixed';
+                    $result['name'] = $result['name'].' -> '.$node->name;
                 }
-                $this->errors = array_merge($this->errors, $result);
+                $this->errors[] = $result;
             }
         }
     }

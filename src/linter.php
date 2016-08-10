@@ -17,12 +17,11 @@ function linter($code, $fix = false)
 
         return $traverser->traverse($stmts);
     } catch (Error $e) {
-        return [['descr' => $e->getMessage()." \nLinter was stopped.",
+        return [[['descr' => $e->getMessage()." \nLinter was stopped.",
                              'name' => '-',
                         'startLine' => '0',
                         'errorType' => 'parse error',
-                ],
-               ];
+               ]], ''];
     }
 }
 
@@ -39,16 +38,16 @@ function run($path, $fix = false)
     foreach ($files as $file) {
         $errors = checkFileErrors($file);
         if (!$errors) {
-            list($linter, $fixedCode) = linter(file_get_contents($file), $fix);
+            list($linterErrors, $fixedCode) = linter(file_get_contents($file), $fix);
 
-            if ($linter) {
+            if ($linterErrors) {
                 if ($fix) {
                     writeFixedCode($file, $fixedCode);
                 }
-                $result[$file] = $linter;
+                $result[$file] = $linterErrors;
             }
         } else {
-            $result[$file] = [$errors];
+            $result[$file] = $errors;
         }
     }
 
