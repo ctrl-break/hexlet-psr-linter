@@ -21,7 +21,7 @@ function linter($code, $fix = false)
                        'name' => '-',
                   'startLine' => '0',
                   'errorType' => 'parse error',
-               ]], ''];
+               ]], $code];
     }
 }
 
@@ -38,11 +38,11 @@ function run($path, $fix = false)
     foreach ($files as $file) {
         $errors = checkFileErrors($file, $fix);
         if (!$errors) {
-            list($linterErrors, $fixedCode) = linter(file_get_contents($file), $fix);
+            list($linterErrors, $returnedCode) = linter(file_get_contents($file), $fix);
 
             if ($linterErrors) {
                 if ($fix) {
-                    writeFixedCode($file, $fixedCode);
+                    writeFixedCode($file, $returnedCode);
                 }
                 $result[$file] = $linterErrors;
             }

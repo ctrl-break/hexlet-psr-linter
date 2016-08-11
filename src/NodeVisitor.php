@@ -54,16 +54,12 @@ class NodeVisitor extends NodeVisitorAbstract
 
     public function afterTraverse(array $nodes)
     {
+        $prettyPrinter = new PrettyPrinter\Standard();
+        $code = $prettyPrinter->prettyPrintFile($nodes);
         if (empty($this->errors)) {
-            return [false, ''];
+            return [false, $code];
         }
 
-        $fixedCode = '';
-        if ($this->fix) {
-            $prettyPrinter = new PrettyPrinter\Standard();
-            $fixedCode = $prettyPrinter->prettyPrintFile($nodes);
-        }
-
-        return [$this->errors, $fixedCode];
+        return [$this->errors, $code];
     }
 }
