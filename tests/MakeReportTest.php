@@ -31,6 +31,5 @@ class MakeReportTest extends \PHPUnit_Framework_TestCase
 
         $yaml = makeReport($result, 'yaml');
         $this->assertEquals($yaml, $this->yaml);
-
     }
 }
