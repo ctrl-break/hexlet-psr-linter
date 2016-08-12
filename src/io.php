@@ -35,19 +35,7 @@ function makeReport(array $result, $format)
             break;
 
         case 'json':
-            foreach ($result as $filename => $errors) {
-                $report .= "{". PHP_EOL;
-                $report .= "\t\"" . $filename . "\":[" . PHP_EOL;
-                foreach ($errors as $err) {
-                    $report .= "\t{" . PHP_EOL;
-                    $report .= "\t\t\"error type\" : \"" . $err['error type'] . "\",\n";
-                    $report .= "\t\t\"description\" : \"" . $err['description'] . "\",\n";
-                    $report .= "\t\t\"line\" : \"" . $err['line'] . "\",\n";
-                    $report .= "\t\t\"name\" : \"" . $err['name'] . "\"\n";
-                    $report .= "\t}," . PHP_EOL;
-                }
-                $report .= "]}\n";
-            }
+            $report .= json_encode($result, JSON_PRETTY_PRINT);
             break;
 
         case 'yaml':
