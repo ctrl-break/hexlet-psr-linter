@@ -24,6 +24,7 @@ function isCorrectFuncName($name)
     if (!in_array($name, $magicMethods)) {
         return isCamelCase($name);
     };
+
     return true;
 }
 
@@ -35,9 +36,14 @@ function checkFuncName($func)
 
     $startLine = $func->getAttributes();
 
-    return [['descr' => 'Function name should be written in camelCase style',
-                          'name' => $func->name,
-                          'startLine' => $startLine['startLine'],
-                          'errorType' => 'warning',
-           ]];
+    return ['descr' => 'Function name should be written in camelCase style',
+                 'name' => $func->name,
+            'startLine' => $startLine['startLine'],
+            'errorType' => 'warning',
+           ];
+}
+
+function fixFuncName($func)
+{
+    return underscoreToCamelCase($func);
 }

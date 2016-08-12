@@ -6,29 +6,27 @@ use PhpParser\Error;
 use PhpParser\NodeTraverser;
 use PhpParser\ParserFactory;
 
-function linter($code)
+function linter($code, $fix = false)
 {
     $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
     $traverser = new NodeTraverser();
-    $traverser->addVisitor(new NodeVisitor());
+    $traverser->addVisitor(new NodeVisitor($fix));
 
     try {
         $stmts = $parser->parse($code);
 
         return $traverser->traverse($stmts);
     } catch (Error $e) {
-        return [['descr' => $e->getMessage()." \nLinter was stopped.",
-                             'name' => '-',
-                        'startLine' => '0',
-                        'errorType' => 'parse error',
-                ],
-               ];
+        return [[['descr' => $e->getMessage()." \nLinter was stopped.",
+                       'name' => '-',
+                  'startLine' => '0',
+                  'errorType' => 'parse error',
+               ]], $code];
     }
 }
 
-function run($path)
+function run($path, $fix = false)
 {
-    $result = [];
     if (is_dir($path)) {
         $files = readDir($path);
     } else {
@@ -36,12 +34,17 @@ function run($path)
     }
     //eval(\Psy\sh());
 
+    $result = [];
     foreach ($files as $file) {
-        $errors = checkFileErrors($file);
+        $errors = checkFileErrors($file, $fix);
         if (!$errors) {
-            $linter = linter(file_get_contents($file));
-            if ($linter) {
-                $result[$file] = $linter;
+            list($linterErrors, $returnedCode) = linter(file_get_contents($file), $fix);
+
+            if ($linterErrors) {
+                if ($fix) {
+                    writeFixedCode($file, $returnedCode);
+                }
+                $result[$file] = $linterErrors;
             }
         } else {
             $result[$file] = [$errors];

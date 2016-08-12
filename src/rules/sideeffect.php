@@ -14,9 +14,9 @@ function hasSideEffectAndDeclaration(array $nodes)
     $declaration = false;
 
     foreach ($nodes as $node) {
-        if (($node instanceof Node\Stmt\Class_) ||
-          ($node instanceof Node\Stmt\Function_)
-          || ($node instanceof Node\Stmt\Use_)) {
+        if (($node instanceof Node\Stmt\Class_)
+              || ($node instanceof Node\Stmt\Function_)
+              || ($node instanceof Node\Stmt\Use_)) {
             $declaration = true;
         } else {
             $sideEffect = true;
@@ -29,13 +29,13 @@ function hasSideEffectAndDeclaration(array $nodes)
 function checkSideEffect(array $nodes)
 {
     if (hasSideEffectAndDeclaration($nodes)) {
-        return [['descr' => 'A file SHOULD declare new symbols (classes, functions, constants, etc.)
+        return ['descr' => 'A file SHOULD declare new symbols (classes, functions, constants, etc.)
 and cause no other side effects, or it SHOULD execute logic with side effects,
 but SHOULD NOT do both.',
-                    'name' => '-',
-                    'startLine' => '1',
-                    'errorType' => 'warning',
-             ]];
+                   'name' => '-',
+              'startLine' => '1',
+              'errorType' => 'warning',
+             ];
     };
 
     return false;
