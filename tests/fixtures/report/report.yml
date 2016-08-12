@@ -1,4 +1,4 @@
-./tests/fixtures/report/test.php:
+tests/fixtures/report/test.php:
   - error type: warning
     description: A file SHOULD declare new symbols (classes, functions, constants, etc.)
 and cause no other side effects, or it SHOULD execute logic with side effects,
