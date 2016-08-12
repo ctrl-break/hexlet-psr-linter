@@ -19,13 +19,22 @@ $cmd->option('f')
     ->default(false)
     ->describedAs('Fix files errors');
 
-$result = hpl\run($cmd['path'], $cmd['fix']);
+$cmd->option('rf')
+    ->aka('reportFormat')
+    ->must(function($format) {
+            $formats = array('text', 'json', 'yaml');
+            return in_array($format, $formats);
+        })
+    ->describedAs('Report format: text, json, yaml');
+
+$result = hpl\run($cmd['path'],
+                  ['fix' => $cmd['fix'],
+                   'format' => $cmd['reportFormat'],
+                  ]);
 
 if (!empty($result)) {
     $exitCode = 1;
-    foreach ($result as $key => $item) {
-        hpl\printResult($item, $key);
-    }
+    hpl\printResult($result);
 } else {
     $exitCode = 0;
     echo "\nAll files are correct.\n";

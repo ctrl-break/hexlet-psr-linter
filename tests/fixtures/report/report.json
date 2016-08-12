@@ -1,0 +1,35 @@
+{
+	"./tests/fixtures/report/test.php":[
+	{
+		"error type" : "warning",
+		"description" : "A file SHOULD declare new symbols (classes, functions, constants, etc.)
+and cause no other side effects, or it SHOULD execute logic with side effects,
+but SHOULD NOT do both.",
+		"line" : "1",
+		"name" : "-"
+	},
+	{
+		"error type" : "warning",
+		"description" : "Variable must be written in camelCase style.",
+		"line" : "7",
+		"name" : "var_name"
+	},
+	{
+		"error type" : "warning",
+		"description" : "Variable must be written in camelCase style.",
+		"line" : "9",
+		"name" : "VarName3"
+	},
+	{
+		"error type" : "warning",
+		"description" : "Function name should be written in camelCase style",
+		"line" : "5",
+		"name" : "WrongFunc"
+	},
+	{
+		"error type" : "warning",
+		"description" : "Function name should be written in camelCase style",
+		"line" : "24",
+		"name" : "Wrong_Func2"
+	},
+]}

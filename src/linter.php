@@ -17,16 +17,18 @@ function linter($code, $fix = false)
 
         return $traverser->traverse($stmts);
     } catch (Error $e) {
-        return [[['descr' => $e->getMessage()." \nLinter was stopped.",
-                       'name' => '-',
-                  'startLine' => '0',
-                  'errorType' => 'parse error',
+        return [[['description' => $e->getMessage()." \nLinter was stopped.",
+                         'name' => '-',
+                         'line' => '0',
+                   'error type' => 'parse error',
                ]], $code];
     }
 }
 
-function run($path, $fix = false)
+function run($path, array $params)
 {
+    isset($params['fix']) ? $fix = $params['fix'] : $fix = false;
+
     if (is_dir($path)) {
         $files = readDir($path);
     } else {
@@ -50,6 +52,8 @@ function run($path, $fix = false)
             $result[$file] = [$errors];
         }
     }
+
+    $result = makeReport($result, $params['format']);
 
     return $result;
 }

@@ -20,9 +20,9 @@ class CheckFileTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(checkFileErrors($this->test1));
 
         $result = checkFileErrors($this->test2);
-        $this->assertEquals("File or directory doesn't exist", $result['descr']);
+        $this->assertEquals("File or directory doesn't exist", $result['description']);
 
         $result = checkFileErrors($this->test3);
-        $this->assertEquals('File must have php extension', $result['descr']);
+        $this->assertEquals('File must have php extension', $result['description']);
     }
 }

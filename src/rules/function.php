@@ -34,12 +34,17 @@ function checkFuncName($func)
         return false;
     }
 
+    return returnErrorsInFuncName($func);
+}
+
+function returnErrorsInFuncName($func)
+{
     $startLine = $func->getAttributes();
 
-    return ['descr' => 'Function name should be written in camelCase style',
-                 'name' => $func->name,
-            'startLine' => $startLine['startLine'],
-            'errorType' => 'warning',
+    return ['description' => 'Function name should be written in camelCase style',
+                   'name' => $func->name,
+                   'line' => $startLine['startLine'],
+             'error type' => 'warning',
            ];
 }
 

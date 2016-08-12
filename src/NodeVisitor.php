@@ -32,7 +32,7 @@ class NodeVisitor extends NodeVisitorAbstract
             if ($result) {
                 if ($this->fix) {
                     $node->name = fixFuncName($node->name);
-                    $result['errorType'] = 'fixed';
+                    $result['error type'] = 'fixed';
                     $result['name'] = $result['name'].' -> '.$node->name;
                 }
                 $this->errors[] = $result;
@@ -44,7 +44,7 @@ class NodeVisitor extends NodeVisitorAbstract
             if ($result) {
                 if ($this->fix) {
                     $node->name = fixVarName($node->name);
-                    $result['errorType'] = 'fixed';
+                    $result['error type'] = 'fixed';
                     $result['name'] = $result['name'].' -> '.$node->name;
                 }
                 $this->errors[] = $result;

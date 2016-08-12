@@ -1,0 +1,15 @@
+./tests/fixtures/report/test.php
+1	-		warning
+A file SHOULD declare new symbols (classes, functions, constants, etc.)
+and cause no other side effects, or it SHOULD execute logic with side effects,
+but SHOULD NOT do both.
+7	var_name		warning
+Variable must be written in camelCase style.
+9	VarName3		warning
+Variable must be written in camelCase style.
+5	WrongFunc		warning
+Function name should be written in camelCase style
+24	Wrong_Func2		warning
+Function name should be written in camelCase style
+5 problems
+---------------------------------------------
