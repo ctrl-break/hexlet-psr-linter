@@ -29,12 +29,12 @@ function hasSideEffectAndDeclaration(array $nodes)
 function checkSideEffect(array $nodes)
 {
     if (hasSideEffectAndDeclaration($nodes)) {
-        return ['descr' => 'A file SHOULD declare new symbols (classes, functions, constants, etc.)
+        return ['description' => 'A file SHOULD declare new symbols (classes, functions, constants, etc.)
 and cause no other side effects, or it SHOULD execute logic with side effects,
 but SHOULD NOT do both.',
-                   'name' => '-',
-              'startLine' => '1',
-              'errorType' => 'warning',
+                       'name' => '-',
+                       'line' => 1,
+                 'error type' => 'warning',
              ];
     };
 

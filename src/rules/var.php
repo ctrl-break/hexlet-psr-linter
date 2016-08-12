@@ -20,10 +20,10 @@ function returnErrorsInVarName($var)
 {
     $startLine = $var->getAttributes();
 
-    return  ['descr' => 'Variable must be written in camelCase style.',
-             'name' => $var->name,
-             'startLine' => $startLine['startLine'],
-             'errorType' => 'warning',
+    return  ['description' => 'Variable must be written in camelCase style.',
+                    'name' => $var->name,
+                    'line' => $startLine['startLine'],
+              'error type' => 'warning',
             ];
 }
 
